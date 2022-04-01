@@ -1,6 +1,7 @@
 package com.nagel.lab4;
 
 import static android.telephony.TelephonyManager.EXTRA_STATE_IDLE;
+import static android.telephony.TelephonyManager.EXTRA_STATE_RINGING;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -47,9 +48,19 @@ public class CallReceiver extends BroadcastReceiver {
             time = timeFormatter.format(callInfo);
         }
 
-        Log.i(TAG, "State: " + phoneState + "\n Number: " +phoneNumber + "\n Time: " + time);
+
+
         if(phoneNumber != null){
-            mainActivity.addPhoneNumberToList(phoneNumber+","+time);
+            if(phoneState.equals(TelephonyManager.EXTRA_STATE_RINGING) ){
+                Log.i(TAG, "State: " + phoneState + "\n Number: " +phoneNumber + "\n Time: " + time);
+                mainActivity.addPhoneNumberToList(phoneNumber+","+time);
+            }else{
+
+            }
+
+
+
+
         }
 
 
